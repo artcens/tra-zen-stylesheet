@@ -1,7 +1,9 @@
 # Welcome!
 
 if you like it and have a pretty decent skill on css, might as well contribute to the code by optimizing it. <br>
-my code is just bad and so cluttered.
+my code is just bad and so cluttered. <br>
+
+please aware that it's not perfect, i optimized the code for windowed use and i use Windows 11, you might need to readjust the code based on your setup.
 
 ## Preview
 
