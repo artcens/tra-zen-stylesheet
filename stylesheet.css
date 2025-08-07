@@ -1,0 +1,347 @@
+@import "fonts/SF-Pro.ttf";
+
+:root {
+  --tra-opaque-rendering: rgba(80, 80, 80, 0.7);
+  --tra-nonfloat-urlbar-opaque-rendering: rgba(80, 80, 80, 1);
+  --tra-blur-rendering: blur(20px);
+  --zen-main-browser-background: rgba(0, 0, 0, 0) !important;
+  
+  --zen-themed-toolbar-bg-transparent: rgba(0, 0, 0, 0) !important;
+  --zen-primary-color: rgba(255, 255, 255, 1) !important;
+}
+
+/* essential tweaks */
+* /* everything */ {
+  /* Custom Fonts*/
+  font-family: 'SF Pro', 'inter', 'Roboto mono', 'arial' !important;
+  font-size: 14px !important;
+  letter-spacing: 0.2px !important;
+}
+
+browser {
+  /* Ensure blur rendering works */
+  will-change: transform !important;
+}
+
+#zen-tabbox-wrapper {
+  /* kill all margin around webview */
+  margin: 0 !important;
+}
+
+#zen-appcontent-navbar-wrapper {
+  /* eliminate annoying window control */
+  display: none !important;
+}
+
+#main-window { 
+  &[sizemode="normal"] .browserSidebarContainer {
+    /* make webview rounded when windowed */
+    border-radius: 8px !important;
+  }
+  &[sizemode="maximized"] .browserSidebarContainer {
+    border-radius: 0.1px !important;
+  }
+}
+
+#zen-sidebar-splitter {
+  /* vanish splitter */
+  opacity: 0 !important;
+  border: none !important;
+  min-width: 0 !important;
+  width: 3px !important;
+  height: 100% !important;
+}
+
+#nav-bar {
+  /* Search box gap adjustment before floating */
+  margin: 8px 4px !important;
+}
+
+#navigator-toolbox {
+  /* Toolbar Spacing */
+  margin-right: 4px !important;
+}
+
+.toolbar-items {
+  /* add margin at the bottom of tab list */
+  margin-bottom: 6px !important;
+}
+
+#main-window[zen-compact-mode="true"] #titlebar:before,
+.zen-glance-sidebar-container > toolbarbutton, 
+findbar {
+  /* make more element has blur renderring */
+  background: var(--tra-opaque-rendering) !important;
+  backdrop-filter: var(--tra-blur-rendering) !important;
+  box-shadow: none !important;
+}
+
+.browserStack browser {
+  /* Remove new tab background color */
+	background-color: transparent !important;
+}
+
+#main-window[zen-compact-mode="true"] { 
+  /* sidebar adjustment if compact mode enabled */
+  #navigator-toolbox {
+    top: 0px !important;
+    height: 100.1vh !important;
+  }
+  #titlebar {
+    padding-left: 8px !important;
+    left: -5px !important;
+    height: 100% !important;
+    &:before {
+      outline: none !important;
+      margin-left: -10px !important;
+      border-radius: 0px !important;
+      border-top-right-radius: 8px !important;
+      border-bottom-right-radius: 8px !important;
+    }
+  }
+}
+
+#tabbrowser-tabbox {
+  /* kill all shadow USED IN WEBVIEW */
+  * {
+    box-shadow: none !important;
+  }
+}
+
+
+
+/* Workspace Tweaks*/
+.zen-current-workspace-indicator-name {
+  /* Set font weight for workspace name */
+  font-weight: 700 !important;
+}
+
+#zen-workspaces-button {
+  /* Workspace button adjustment */
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 100px !important;
+  border: 1px solid #ffffff0c !important;
+  width: calc(30px * 5) !important;
+  .subviewbutton {
+      &[active="true"] {
+          background: rgba(255, 255, 255, 0.2) !important;
+          transition: 0.3s !important;
+          border-radius: 100px !important;
+          border: 1px solid #ffffff0a !important;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.062) !important;
+
+      }
+
+      &:hover {
+          border-radius: 100px !important;
+          background: rgba(255, 255, 255, 0.2) !important;
+          transition: 0.3s !important;
+      }
+
+      &:after {
+          display: none !important;
+      }
+  }
+}
+
+
+
+/* search bar tweak */
+#urlbar-input {
+  /* center text inside search box */
+  text-align: center !important;
+}
+
+.urlbar-input-container {
+  /* give search box padding to make it look nicer  */
+  padding: 4px !important;
+}
+
+#urlbar[zen-floating-urlbar="true"] > .urlbar-input-container {
+  /* remove top and bottom padding in floted search box */
+  padding: 0px 12px !important;
+}
+
+#urlbar-results {
+  /* remove gap between search box and search result */
+  padding-top: 0px !important;
+}
+
+.urlbarView-body-inner {
+  /* vanish line above search result */
+  border: none !important;
+}
+
+#urlbar {
+  /* only show search result when user input something */
+  &[usertyping] #urlbar-results {
+    display: block !important;
+  }
+  #urlbar-results {
+    display: none !important;
+  }
+}
+
+#urlbar {
+  &[open] #urlbar-background {
+    background: var(--tra-nonfloat-urlbar-opaque-rendering) !important;
+    backdrop-filter: var(--tra-blur-rendering) !important;
+    box-shadow: none !important;
+  }
+  &[zen-floating-urlbar="true"] #urlbar-background {
+    background: var(--tra-opaque-rendering) !important;
+    backdrop-filter: var(--tra-blur-rendering) !important;
+    box-shadow: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* tab tweak */
+#tabs-newtab-button {
+  /* make tab transition a bit smoother */
+  transition: 250ms !important;
+}
+
+.tabbrowser-tab {
+  * {
+    transition: all 250ms !important;
+  }
+  /* ensure tab button is visible only when on hover */
+  > .tab-stack
+  > .tab-content {
+      .tab-reset-button, .tab-close-button {
+        opacity: 0 !important;
+      }
+      &:hover {
+        .tab-reset-button, .tab-close-button {
+          opacity: 1 !important;
+        }
+      }
+    }
+  
+  &[selected="true"] 
+  > .tab-stack 
+  > .tab-content 
+  > .tab-close-button {
+    display: none !important;
+  }
+  &[selected="true"]:hover:not([pinned]) 
+  > .tab-stack 
+  > .tab-content 
+  > .tab-close-button {
+    display: block !important;
+  }
+}
+
+.tab-background[selected] {
+  /* set selected tab background to be white */
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+.tab-icon-image[src="data:image/png;base64,"] {
+  /* set unloaded blank tab image to white stroke instead of blank white */
+  scale: 0.9 !important;
+  background: none !important;
+  box-shadow: 0px 0px 0px 1px #fff inset;
+  border-radius: 10px !important;
+}
+
+#navigator-toolbox {
+  /* Hide attention icon (green dot) under tab icons */
+  .tabbrowser-tab:is([image], [pinned])
+    > .tab-stack
+    > .tab-content[attention]:not([selected]),
+  .tabbrowser-tab
+    > .tab-stack
+    > .tab-content[pinned][titlechanged]:not([selected]) {
+    background-image: none !important;
+  }
+  .tabbrowser-tab
+    > .tab-stack
+    > .tab-content[titlechanged]:not([selected="true"]) {
+    background-image: none !important;
+  }
+}
+:root {
+  --zen-dialog-background: var(--zen-main-browser-background-toolbar) !important;
+  --panel-separator-color: rgba(0, 0, 0, 0.17) !important;
+  --zen-appcontent-border: none !important;
+}
+
+
+
+/* empty tab image */
+#browser .browserStack browser {
+  /* zen logo	*/
+	background-image: url("https://raw.githubusercontent.com/zen-browser/branding/fad9cfe9346a5bfe6c181f94014143978c9c233b/Official/Word%20Marks/SVG/zen_logo_icon_paper.svg") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+	background-size: 50px !important;
+}
+
+/* media control tweaks */
+#zen-media-controls-toolbar {
+  * {
+    border: none !important;
+  }
+  transition: 100ms all !important;
+  /* give gap for media control */
+  margin-bottom: -2px !important;
+  toolbaritem {
+    /* tweaks */
+    padding: 8px !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+  }
+  &:hover { 
+      toolbaritem {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    color: white !important;
+  }
+  #zen-media-info-vbox:before {
+    display: none !important;
+  }
+}
+
+
+
+/* vanish scrollbar */
+@media not (-moz-bool-pref: "theme.nosidebarscrollbar.before125b") {
+    scrollbox:nth-child(5) {
+        scrollbar-width: none !important;
+    }
+}
+@media (-moz-bool-pref: "theme.nosidebarscrollbar.before125b") {
+    #zen-tabs-wrapper {
+        scrollbar-width: none !important;
+    }
+}
+
+
+
+/* not organized yet */
+
+#statuspanel {
+  /* hide status bar */
+  display: none !important;
+} 
+
+
+#browser .browserStack browser #document {
+  background-color: white !important;
+}
+
+#zen-media-focus-button::after {
+  display: none !important;
+}
