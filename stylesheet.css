@@ -85,12 +85,11 @@ findbar {
   /* sidebar adjustment if compact mode enabled */
   #navigator-toolbox {
     top: 0px !important;
-    height: 100.1vh !important;
+    height: 100vh !important;
   }
   #titlebar {
     padding-left: 8px !important;
     left: -5px !important;
-    height: 100% !important;
     &:before {
       outline: none !important;
       margin-left: -10px !important;
@@ -114,6 +113,21 @@ findbar {
 .zen-current-workspace-indicator-name {
   /* Set font weight for workspace name */
   font-weight: 700 !important;
+  color: #FFFFFF !important;
+}
+
+.zen-current-workspace-indicator {
+  .zen-current-workspace-indicator-name {
+    /* Set font weight for workspace name */
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    transition: all 200ms !important;
+  }
+  &:hover {
+    .zen-current-workspace-indicator-name {
+      opacity: 1 !important;
+    }
+  }
 }
 
 #zen-workspaces-button {
@@ -344,4 +358,20 @@ findbar {
 
 #zen-media-focus-button::after {
   display: none !important;
+}
+
+
+zen-folder {
+  &[collapsed]:not([hasactivetab], [has-active="true"]) {
+    .tab-group-label, .tab-group-folder-icon {
+      opacity: 0.4 !important;
+    }
+  }
+}
+
+/*
+zen-folder {
+  zen-folder.tabbrowser-tab[pending="true"] .tab-group-label {
+    opacity: 0 !important;
+  }
 }
