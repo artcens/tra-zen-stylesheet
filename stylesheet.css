@@ -1,13 +1,14 @@
 @import "fonts/SF-Pro.ttf";
 
 :root {
-  --tra-opaque-rendering: rgba(80, 80, 80, 0.7);
-  --tra-nonfloat-urlbar-opaque-rendering: rgba(80, 80, 80, 1);
-  --tra-blur-rendering: blur(20px);
+  --tra-opaque-rendering: rgba(40, 40, 40, 0.6) !important;
+  --tra-nonfloat-urlbar-opaque-rendering: rgba(80, 80, 80, 1) !important;
+  --tra-blur-rendering: blur(10px) saturate(250%) !important;
   --zen-main-browser-background: rgba(0, 0, 0, 0) !important;
   
   --zen-themed-toolbar-bg-transparent: rgba(0, 0, 0, 0) !important;
-  --zen-primary-color: rgba(255, 255, 255, 1) !important;
+  --zen-primary-color: rgba(255, 255, 255, 0) !important;
+  --zen-main-browser-background-toolbar: rgba(40, 40, 40, 0.6) !important;
 }
 
 /* essential tweaks */
@@ -198,12 +199,12 @@ findbar {
 }
 
 #urlbar {
-  &[open] #urlbar-background {
+  &[open] .urlbar-background {
     background: var(--tra-nonfloat-urlbar-opaque-rendering) !important;
     backdrop-filter: var(--tra-blur-rendering) !important;
     box-shadow: none !important;
   }
-  &[zen-floating-urlbar="true"] #urlbar-background {
+  &[zen-floating-urlbar="true"] .urlbar-background {
     background: var(--tra-opaque-rendering) !important;
     backdrop-filter: var(--tra-blur-rendering) !important;
     box-shadow: none !important;
@@ -294,13 +295,15 @@ findbar {
 
 
 /* empty tab image */
-#browser .browserStack browser {
-  /* zen logo	*/
-	background-image: url("https://raw.githubusercontent.com/zen-browser/branding/fad9cfe9346a5bfe6c181f94014143978c9c233b/Official/Word%20Marks/SVG/zen_logo_icon_paper.svg") !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-	background-size: 50px !important;
+#browser {
+  .browserStack browser {
+    background-image: url("https://raw.githubusercontent.com/zen-browser/branding/fad9cfe9346a5bfe6c181f94014143978c9c233b/Official/Word%20Marks/SVG/zen_logo_icon_paper.svg") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: 50px !important;
+  }
 }
+
 
 /* media control tweaks */
 #zen-media-controls-toolbar {
@@ -316,10 +319,11 @@ findbar {
     box-shadow: none !important;
     backdrop-filter: none !important;
     background-color: rgba(255, 255, 255, 0) !important;
+    transition: all 150ms !important;
   }
   &:hover { 
       toolbaritem {
-        background-color: rgba(255, 255, 255, 0.1) !important;
+        background-color: rgba(50, 50, 50, 1) !important;
     }
     color: white !important;
   }
@@ -374,4 +378,37 @@ zen-folder {
   zen-folder.tabbrowser-tab[pending="true"] .tab-group-label {
     opacity: 0 !important;
   }
+}
+
+*/
+
+.zen-view-splitter-header {
+  opacity: 0.5 !important;
+  transition: all 150ms !important;
+  &:hover {
+    opacity: 1 !important;
+  }
+}
+
+.browserSidebarContainer {
+  &[zen-split="true"] {
+    margin: 0 !important;
+  }
+}
+
+.zen-split-view-splitter {
+  margin: 0 !important;
+  width: 2px !important;
+  opacity: 0 !important;
+}
+
+#commonDialogWindow {
+  background: var(--tra-opaque-rendering) !important;
+  backdrop-filter: var(--tra-blur-rendering) !important;
+  --zen-main-browser-background: rgba(0, 0, 0, 0.3) !important;
+}
+
+.dialogBox {
+  margin-top: 10px !important;
+  backdrop-filter: var(--tra-blur-rendering) !important;
 }
